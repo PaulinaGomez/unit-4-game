@@ -1,74 +1,97 @@
 $(document).ready(function() {
+
 var comInstructions = document.getElementsByClassName("lead")[0];
 comInstructions.innerHTML = "<h3>I am COM, ready to play?</h3>";
-console.log(comInstructions);
+console.log(comInstructions); //??????????
+/*$("comInstructions").toggle(function(){
+    $(this).text("I am Com, ready to play?");
+    console.log(comInstructions);
+  });*/
+/*
+  $('#element').toggle(function(){
+    $(this).on("click",'one');
+  },
+  function(){
+    $(this).removeClass('one').addClass('two');
+  },
+  function(){
+    $(this).removeClass('two').addClass('three');
+  });*/
 
-
-var contador = 0; //<----- numero de clicks instrucciones
-var contador2 = 2; //<----- numero de clicks movimiento de imagenes
-var user = $("<div></div>"); //<------- div for Text User when player is choosed
-var oponent = $("<div></div>");//<------- div for Text Oponent when player is choosed
-var enemies = $("<div></div>");//<------- div for Text Enemies Available when Oponent is choosed
-var comEnemy = ""; 
-var player = "";
-var hpPlayer = parseInt(player.attr("data-hp"));
-var attackPLayer = parseInt(player.attr("data-attack"));
+var hp = 0;
+var attack = 0;
 var counterAttack = 0;
-var hpComEnemy = parseInt(comEnemy.attr("data-hp"));
-var attackComEnemy = parseInt(comEnemy.attr("data-attack"));
+var contador = 0; //<----- numero de clicks
+var secondClick = true;
+var thirdClick = true;
 
-comTalking();
-start();
-fight();
-
-function comTalking () { //<-------- //game instructions by com click 1 & 2
+    function comInstruction () {
+    //append text in com "choose your character" primer click asigna personaje al usuario el resto se convierte en enemigos
+    //personaje se mueve a primeras 3 col y reduce tamaño append text Usuario
+    //enemigos se mueven debajo de row de personajes append text Enemies Available
     $(".btn.btn-primary.btn-lg").on("click", function() {
         if(contador == 0) {
             comInstructions.innerHTML = "<h3>Choose your Character</h3>";
             contador++;
-        } 
-        
-        else if(contador == 1) {
+            } 
+            
+        else if(contador == 1)
             comInstructions.innerHTML = "<h3>Battle to Death, choose an enemy!</h3>";
-        }
-    });
-}
-
-function start () { //<------image movement
-    $(".card-img-top").on("click", function() { //<---- click on character img
-        if(contador2 == 0) { //<---- first click 
-            player = $(".card.character").attr("data-user"); //<---- add attribute data-user to card character clicked 
-            user.textContent = "User Character";    //<---- add text "User Caracter" to user variable "new div"   
-            $(".col-md-3 first").append(user); //<---- append div user with new text to ".col-md-3 first"
-            $(".col-md-3 first").append($(".card.character")); //<---- click on ".card character" to ".col-md-3 first"
-            contador2++; //<---- add one to contador2
-        }
         
-        else if(contador2 == 1) { //<---- second click 
-            comEnemy = $(".card.character").attr("data-oponent"); //<---- add attribute data-oponent to card character clicked 
-            oponent.textContent = "Oponent";  //<---- add text "Oponent" to oponent variable "new div" 
-            $(".col-md-3 fourth").append(oponent);  //<---- append div oponent with new text to ".col-md-3 fourth"   
-            $(".col-md-3 fourth").append($(".card.character")); //<---- click on ".card character" to ".col-md-3 fourth"
-        } 
-        enemiesAvailable(); //<---------- call for function to move the rest of the characters
     });
-}
-console.log(user);
+    function start () {
+    //append text in com "choose your character" primer click asigna personaje al usuario el resto se convierte en enemigos
+    //personaje se mueve a primeras 3 col y reduce tamaño append text Usuario
+    //enemigos se mueven debajo de row de personajes append text Enemies Available
+    $(".btn.btn-primary.btn-lg").on("click", function() {
+        if(contador == 0)
+            comInstructions.innerHTML = "<h3>Choose your Character</h3>";
+        else if(contador == 1)
+            comInstructions.innerHTML = "<h3>Battle to Death, choose an enemy!</h3>";
+        
+        
+    });*/
+        /*$("comInstructions").toggle(function(){
+        $(comInstructions).empty().text("Choose your Character");
+        console.log(comInstructions);
+        });*/
+        $(".card character").on("click", function() {
+            var user = document.createElement("p");
+            user.innerHTML = "User Character";           
+            $(".col-md-3 first").append(user);  
+            $(".col-md-3 first").append(".card character");
+        }); 
+        secondClick = false;
+    }
 
-function enemiesAvailable() { //<---- function to move the rest of the characters 
-    var enemiesav = no.player //<---- appoint all ".card.character" that aren't "data user" or "data-oponent"
-    enemies.textContent = "Enemies Available";   //<---- add text "Enemies Available" to enemies variable "new div"     
-    $(".col-md-8 enemiesav").append(enemies);  //<---- append div enemies with new text to ".col-md-8 enemiesav"  
-    $(".col-md-8 enemiesav").append($(".card.character")); //<---- click on ".card character" to ".col-md-8 enemiesav"
-}
-
-function fight () { //<---- attack function
-
-}
     
-});
+    function fight () {
+        //append text in com "Battle to Death, choose an enemy"
+        //on click append personaje se mueve a col
+        $(".btn.btn-primary.btn-lg").on("click", function() {
+        console.log(comInstructions);
+        });         
+        /*    $("comInstructions").toggle(function(){
+                $(comInstructions).empty().text("Battle to Death, choose an enemy");
+                console.log(comInstructions);
+                });*/
+        $(".card character").on("click", function() {
+            var oponent = document.createElement("p");
+            oponent.innerHTML = "Oponent";           
+            $(".col-md-3 first").append(oponent);  
+            $(".col-md-3 first").append(".card character");
+        }); 
+            thirdClick = false;
+    }
 
 
+comInstruction ();
+start(secondClick);
+fight(thirdClick);
+
+
+
+}
 
 /*class character { trying with class <---------------------------------
     constructor(hp, attack) {
@@ -166,4 +189,4 @@ Juego
                 2.2.2.1.3 si el hp = 0 del enemigo, aparece nota de derrota de enemigo. enemigo desaparece de 
                           enemigos disponibles, si ya no se encuentran enemigos disponibles. El juego acaba, aprece
                           nota ganaste y btn de nuevo juego. (inicia funcion inicio de juego)
-*/
+*/)

@@ -1,0 +1,35 @@
+body {
+    background-image: url("../images/background.jpg");
+    background-size: cover; 
+}
+
+.jumbotron {
+    background-color:rgba(250, 217, 138, 0.8);
+    height: ;
+}
+
+.card-img-top{
+    width: 150px;
+    height: 190px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+}
+.card {
+    margin: 0 auto;
+}
+.card-text {
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 auto;
+}
+h3 {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+.card-body{
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+}
