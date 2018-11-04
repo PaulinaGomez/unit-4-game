@@ -1,114 +1,72 @@
-$(document).ready(function () {
-    var comInstructions = document.getElementsByClassName("lead")[0];
-    comInstructions.innerHTML = "<h3>I am COM, ready to play?</h3>";
-    console.log(comInstructions);
+$(document).ready(function() {
+var comInstructions = document.getElementsByClassName("lead")[0];
+comInstructions.innerHTML = "<h3>I am COM, ready to play?</h3>";
+console.log(comInstructions);
 
 
-    var contador = 0; //<----- numero de clicks instrucciones
-    var userHasPickedCharacter = false; //<----- numero de clicks movimiento de imagenes
-    var user = $("<div></div>"); //<------- div for Text User when player is choosed
-    var oponent = $("<div></div>");//<------- div for Text Oponent when player is choosed
-    var comEnemy = "";
-    var player = "";
-    var dataHpUser = 0;
-    var dataHpOponent = 0;
-    var dataAttackOponent = 0;
+var contador = 0; //<----- numero de clicks instrucciones
+var userHasPickedCharacter = false; //<----- numero de clicks movimiento de imagenes
+var user = $("<div></div>"); //<------- div for Text User when player is choosed
+var oponent = $("<div></div>");//<------- div for Text Oponent when player is choosed
+var enemies = $("<div></div>");//<------- div for Text Enemies Available when Oponent is choosed
+var comEnemy = ""; 
+var player = "";
+/*
+var hpPlayer = parseInt(player.attr("data-hp"));
+var attackPLayer = parseInt(player.attr("data-attack"));
+var counterAttack = 0;
+var hpComEnemy = parseInt(comEnemy.attr("data-hp"));
+var attackComEnemy = parseInt(comEnemy.attr("data-attack"));
+*/
+comTalking();
+start();
+fight();
 
-    var NewHpUser = 0;
-    var NewHpOponent = 0;
+function comTalking () { //<-------- //game instructions by com click 1 & 2
+    $(".btn.btn-primary.btn-lg").on("click", function() {
+        if(contador == 0) {
+            comInstructions.innerHTML = "<h3>Choose your Character</h3>";
+            contador++;
+        } 
+        
+        else if(contador == 1) {
+            comInstructions.innerHTML = "<h3>Battle to Death, choose an enemy!</h3>";
+        }
+    });
+}
 
-    var btnattack = $("<div></div>");
-    var btnreset = $("<div></div>");
-    var btnattackT = "";
-    var btnresetT = "";
-
-    /*
-    var hpPlayer = parseInt(player.attr("data-hp"));
-    var attackPLayer = parseInt(player.attr("data-attack"));
-    var counterAttack = 0;
-    var hpComEnemy = parseInt(comEnemy.attr("data-hp"));
-    var attackComEnemy = parseInt(comEnemy.attr("data-attack"));
-    */
-
-    comTalking();
-    start();
-    fight();
-
-    function comTalking() { //<-------- //game instructions by com click 1 & 2
-        $(".btn.btn-primary.btn-lg").on("click", function () {
-            if (contador == 0) {
-                comInstructions.innerHTML = "<h3>Choose your Character</h3>";
-                contador++;
+function start () { //<------image movement
+    $(".card.character").on("click", function() { //<---- click on character img
+        if(!userHasPickedCharacter) { //<---- first click 
+            player = $(this).addClass("user"); //<---- add attribute data-user to card character clicked 
+            user.text("User Character");    //<---- add text "User Caracter" to user variable "new div"   
+            
+            $(this).prepend(user); //<---- append div user with new text to ".col-md-3 first"
+            
+            $(".col-md-3.first").append($(this)); //<---- click on ".card character" to ".col-md-3 first"
+            $(".row:last").append($(".card.character:not(.user)"));
+            
+            userHasPickedCharacter = true;
+        }
+        else {
+            var isUserCharacter = $(this).hasClass("user");
+            if($(".enemy").length === 0 && !isUserCharacter) {
+                comEnemy = $(this).addClass("enemy");
+                oponent.text("Oponent");  //<---- add text "Oponent" to oponent variable "new div" 
+                
+                $(this).prepend(oponent);
+                
+                $(".col-md-3.fourth").append($(this));
             }
+        } 
+    });
+}
+console.log(user);
 
-            else if (contador == 1) {
-                comInstructions.innerHTML = "<h3>Battle to Death, choose an enemy!</h3>";
-            }
-        });
-    }
+function fight () { //<---- attack function
 
-    function start() { //<------image movement
-        $(".card.character").on("click", function () { //<---- click on character img
-            if (!userHasPickedCharacter) { //<---- first click 
-                player = $(this).addClass("user"); //<---- add attribute data-user to card character clicked 
-                user.text("User Character");    //<---- add text "User Caracter" to user variable "new div"   
-                $(".user").attr("id", "userName");
-
-                $(this).prepend(user); //<---- append div user with new text to ".col-md-3 first"
-
-                $(".col-md-3.first").append($(this)); //<---- click on ".card character" to ".col-md-3 first"
-                $(".row:last").append($(".card.character:not(.user)"));
-                dataHpUser = $(".user").attr("data.hp");
-                dataAttackUser = $(".user").attr("data.attack");
-                userHasPickedCharacter = true;
-            }
-            else {
-                var isUserCharacter = $(this).hasClass("user");
-                if ($(".enemy").length === 0 && !isUserCharacter) {
-                    comEnemy = $(this).addClass("enemy");
-                    oponent.text("Oponent");  //<---- add text "Oponent" to oponent variable "new div" 
-                    $(".opponent").attr("id", "opponentName");
-
-                    $(this).prepend(oponent);
-
-                    $(".col-md-3.fourth").append($(this));
-
-                    dataHpOponent = $(".enemy").attr("data.hp");
-                    dataAttackOponent = $(".enemy").attr("data.attack");
-
-                    createbtnattack();
-                    createbtnreset();
-
-                }
-            }
-        });
-    }
-
-    function createbtnattack() { //<---- btn attack function
-        btnattack = $("<button>");
-        btnattack.addClass("btn-attack");
-        btnattack.text("Attack");
-        $(".col-md-3.second").append(btnattack);
-
-        btnattack.on("click", function () {
-            NewHpUser = dataHpUser - dataAttackOponent
-            $(".user #hp").text(NewHpUser);
-            NewHpOponent = dataHpOponent - dataAttackUser
-            $(".enemy #hp").text(NewHpOponent);
-        });
-    }
-
-    function createbtnreset() { //<---- btn reset function
-        btnreset = document.createElement("button");
-        btnresetT = document.createTextNode("Reset");
-        btnreset.appendChild(btnresetT);
-        $(".col-md-3.third").append(btnreset);
-    }
-
-    function fight() { //<---- hp / attack level
-        $(btnattack)
-    }
-
+}
+    
 });
 
 
