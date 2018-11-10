@@ -5,7 +5,6 @@ body {
 
 .jumbotron {
     background-color:rgba(250, 217, 138, 0.8);
-    height: ;
 }
 
 .card-img-top{
@@ -34,11 +33,111 @@ h3 {
     text-align: center;
 }
 
-.opponentName{
+#opponentName{
     text-align: center;
-    
+    margin: 0 auto;
+    padding: 0 auto;
+    font-weight: bold;
+    font-size: 20px;
+
 }
 
-.userName{
+#userName{
     text-align: center;
+    margin: 0 auto;
+    padding: 0 auto;
+    font-weight: bold;
+    font-size: 20px;
+
 }
+.btn-attack {
+    -moz-box-shadow: 0px 1px 0px 0px #102449;
+    -webkit-box-shadow: 0px 1px 0px 0px #102449;
+    box-shadow: 0px 1px 0px 0px #102449;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6b33ef), color-stop(1, #af01d2));
+    background:-moz-linear-gradient(top, #6b33ef 5%, #af01d2 100%);
+    background:-webkit-linear-gradient(top, #6b33ef 5%, #af01d2 100%);
+    background:-o-linear-gradient(top, #6b33ef 5%, #af01d2 100%);
+    background:-ms-linear-gradient(top, #6b33ef 5%, #af01d2 100%);
+    background:linear-gradient(to bottom, #6b33ef 5%, #af01d2 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6b33ef', endColorstr='#af01d2',GradientType=0);
+    background-color:#6b33ef;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    border:1px solid #6405d0;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0px -1px 0px #25305c;
+    align-self: auto;
+    margin: 0, auto;
+}
+.btn-attack:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #af01d2), color-stop(1, #6b33ef));
+    background:-moz-linear-gradient(top, #af01d2 5%, #6b33ef 100%);
+    background:-webkit-linear-gradient(top, #af01d2 5%, #6b33ef 100%);
+    background:-o-linear-gradient(top, #af01d2 5%, #6b33ef 100%);
+    background:-ms-linear-gradient(top, #af01d2 5%, #6b33ef 100%);
+    background:linear-gradient(to bottom, #af01d2 5%, #6b33ef 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#af01d2', endColorstr='#6b33ef',GradientType=0);
+    background-color:#af01d2;
+}
+.btn-attack:active {
+    position:relative;
+    top:1px;
+}
+
+.btn-reset {
+    -moz-box-shadow: 0px 1px 0px 0px #102449;
+    -webkit-box-shadow: 0px 1px 0px 0px #102449;
+    box-shadow: 0px 1px 0px 0px #102449;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6b33ef), color-stop(1, #af01d2));
+    background:-moz-linear-gradient(top, #6b33ef 5%, #af01d2 100%);
+    background:-webkit-linear-gradient(top, #6b33ef 5%, #af01d2 100%);
+    background:-o-linear-gradient(top, #6b33ef 5%, #af01d2 100%);
+    background:-ms-linear-gradient(top, #6b33ef 5%, #af01d2 100%);
+    background:linear-gradient(to bottom, #6b33ef 5%, #af01d2 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6b33ef', endColorstr='#af01d2',GradientType=0);
+    background-color:#6b33ef;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    border:1px solid #6405d0;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0px -1px 0px #25305c;
+    align-self: auto;
+    margin: 0, auto;
+}
+.btn-reset:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #af01d2), color-stop(1, #6b33ef));
+    background:-moz-linear-gradient(top, #af01d2 5%, #6b33ef 100%);
+    background:-webkit-linear-gradient(top, #af01d2 5%, #6b33ef 100%);
+    background:-o-linear-gradient(top, #af01d2 5%, #6b33ef 100%);
+    background:-ms-linear-gradient(top, #af01d2 5%, #6b33ef 100%);
+    background:linear-gradient(to bottom, #af01d2 5%, #6b33ef 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#af01d2', endColorstr='#6b33ef',GradientType=0);
+    background-color:#af01d2;
+}
+.btn-reset:active {
+    position:relative;
+    top:1px;
+}
+
+h4 {
+    font-weight: 500;
+    font-size: 17px;
+}
+
